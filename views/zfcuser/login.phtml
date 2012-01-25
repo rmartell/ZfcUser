@@ -1,3 +1,12 @@
-<h1>Sign In</h1>
-<?php echo $loginForm->setAction($this->url('zfcuser/login'))->setView($this); ?>
-Not registered? <a href="<?php echo $this->url('zfcuser/register') ?>">Sign up!</a>
+<div class="content full_width" align="center">
+    <div class="row">
+        <div class="span8">
+            <h1>Sign In</h1>
+            <div><?php echo $loginForm->setAction($this->url('zfcuser/login'))->setView($this); ?></div>
+        </div>
+        <div class="span8" >
+            <h1>Register</h1>
+            <div><?php  echo $registerForm->setAction($this->url('zfcuser/register'))->setView($this);?></div>
+    </div>
+    </div>
+</div>
