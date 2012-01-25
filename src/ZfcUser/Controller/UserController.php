@@ -48,10 +48,12 @@ class UserController extends ActionController
     {
         $request = $this->getRequest();
         $form    = $this->getLoginForm();
+        $registerForm = $this->getRegisterForm();
 
         if (!$request->isPost()) {
             return array(
                 'loginForm' => $form,
+                'registerForm' => $registerForm,
             );
         }
 
@@ -122,6 +124,7 @@ class UserController extends ActionController
         }
         $request = $this->getRequest();
         $form    = $this->getRegisterForm();
+        $loginForm = $this->getLoginForm();
         if ($request->isPost()) {
             if (false === $form->isValid($request->post()->toArray())) {
                 $this->flashMessenger()->setNamespace('zfcuser-register-form')->addMessage($request->post()->toArray());
@@ -139,6 +142,7 @@ class UserController extends ActionController
         }
         return array(
             'registerForm' => $form,
+            'loginForm' =>$loginForm,
         );
     }
 
