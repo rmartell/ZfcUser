@@ -75,13 +75,13 @@ class Base extends ProvidesEventsForm
         $this->addElement('hidden', 'userId', array(
             'filters'    => array('StringTrim'),
             'required'   => true,
-            'order'      => -100,
+            'order'      => 1300,
         ));
 
         $this->addElement('hash', 'csrf', array(
             'ignore'     => true,
             'decorators' => array('ViewHelper'),
-            'order'      => -100,
+            'order'      => 1200,
         ));
 
         $this->events()->trigger('init', $this);
