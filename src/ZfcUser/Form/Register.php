@@ -36,10 +36,10 @@ class Register extends Base
                     //array('description',array('tag'=>'span','class'=>'description')),  // for the description to be displayed
                     array(                                       // for the elements Text/Text Area
                         array('data'=>'HtmlTag'),
-                        array('tag'=>'div','class'=>'signupElementClass','style'=>' width: 80%; align:right;'),
+                        array('tag'=>'div','class'=>'signupElementClass'),
                     ),
-                    array('Label',array('tag'=>'div','class'=>'signupLabelClass','style'=>'padding-right: 5px; float:left; width: 20%;')),  //for labels
-                    array(array('row'=>'HtmlTag'),array('tag'=>'div','class'=>'signupElementDiv','style'=>'color: red; padding: 10px; float:left; width:100%;')),  // for the entire element
+                    array('Label',array('tag'=>'div','class'=>'signupLabelClass')),  //for labels
+                    array(array('row'=>'HtmlTag'),array('tag'=>'div','class'=>'signupElementDiv')),  // for the entire element
                 
                 ),array('submit','captcha'),
                 false
@@ -49,9 +49,9 @@ class Register extends Base
                 'ViewHelper',
                 array(                                       // for the elements Text/Text Area
                         array('data'=>'HtmlTag'),
-                        array('tag'=>'div','class'=>'signupElementClass','style'=>'width:70%;'),
+                        array('tag'=>'div','class'=>'signupElementClass'),
                 ),
-                array(array('row'=>'HtmlTag'),array('tag'=>'div','class'=>'signuoElementDiv','style'=>'color: red; padding: 10px; float:right; width: 100%;')),  // for the entire element
+                array(array('row'=>'HtmlTag'),array('tag'=>'div','class'=>'signupElementDiv')),  // for the entire element
             ));
     }
 }
