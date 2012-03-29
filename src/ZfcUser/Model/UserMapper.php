@@ -13,7 +13,7 @@ class UserMapper extends DbMapperAbstract implements UserMapperInterface
     protected $userEmailField    = 'email';
     protected $userUsernameField = 'username';
 
-    public function persist(User $user)
+    public function persist(UserInterface $user)
     {
         $data = new ArrayObject($user->toArray()); // or perhaps pass it by reference?
         $this->events()->trigger(__FUNCTION__ . '.pre', $this, array('data' => $data, 'user' => $user));
