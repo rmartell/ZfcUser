@@ -140,6 +140,8 @@ The following options are available:
   address.  Default is `false`.
 - **enable_display_name** - Boolean value, enables a display name field on the
   registration form. Default value is `false`.
+- **enable_registration** - Boolean value, Determines if a user should be
+  allowed to register. Default value is `true`.
 - **require_activation** - Boolean value, require that the user verify their
   email address to 'activate' their account. Default value is `false`. (Note,
   this doesn't actually work yet, but defaults an 'active' field in the DB to
@@ -170,35 +172,38 @@ Changing Registration Captcha Element
 By default, the user registration uses the Figlet captcha engine.  This is
 because it's the only one that doesn't require API keys.  It's possible to change
 out the captcha engine with DI.  For example, to change to Recaptcha, you would
-add this to one of your configuration files (global.config.php, module.config.php):
+add this to one of your configuration files (global.config.php,
+module.config.php, or a dedicated recaptcha.config.php):
 
-return array(
-    'di'=> array(
-        'instance'=>array(
-            'alias'=>array(
-                // OTHER ELEMENTS....
-                'recaptcha_element' => 'Zend\Form\Element\Captcha'
-            ),
-            'recaptcha_element' => array(
-                'parameters' => array(
-                    'spec' => 'captcha',
-                    'options'=>array(
-                        'label'      => '',
-                        'required'   => true,
-                        'order'      => 500,
-                        'captcha'    => array(
-                            'captcha' => 'ReCaptcha',
-                            'privkey' => RECAPTCHA_PRIVATE_KEY,
-                            'pubkey'  => RECAPTCHA_PUBLIC_KEY,
+    <?php
+    // ./config/autoload/recaptcha.config.php
+    return array(
+        'di'=> array(
+            'instance'=>array(
+                'alias'=>array(
+                    // OTHER ELEMENTS....
+                    'recaptcha_element' => 'Zend\Form\Element\Captcha',
+                ),
+                'recaptcha_element' => array(
+                    'parameters' => array(
+                        'spec' => 'captcha',
+                        'options'=>array(
+                            'label'      => '',
+                            'required'   => true,
+                            'order'      => 500,
+                            'captcha'    => array(
+                                'captcha' => 'ReCaptcha',
+                                'privkey' => RECAPTCHA_PRIVATE_KEY,
+                                'pubkey'  => RECAPTCHA_PUBLIC_KEY,
+                            ),
                         ),
                     ),
                 ),
-            ),
-            'ZfcUser\Form\Register' => array(
-                'parameters' => array(
-                    'captcha_element'=>'recaptcha_element'
+                'ZfcUser\Form\Register' => array(
+                    'parameters' => array(
+                        'captcha_element'=>'recaptcha_element',
+                    ),
                 ),
             ),
-        )
-    )
-);
+        ),
+    );
