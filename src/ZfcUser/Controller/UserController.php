@@ -177,10 +177,13 @@ class UserController extends ActionController
 
     public function setLoginForm(Form $loginForm)
     {
-        $this->loginForm = $loginForm;
-        $fm = $this->flashMessenger()->setNamespace('zfcuser-login-form')->getMessages();
-        if (isset($fm[0])) {
-            $this->loginForm->addErrorMessage($fm[0]);
+        if($this->loginForm != $loginForm)
+        {
+            $this->loginForm = $loginForm;
+            $fm = $this->flashMessenger()->setNamespace('zfcuser-login-form')->getMessages();
+            if (isset($fm[0])) {
+                $this->loginForm->addErrorMessage($fm[0]);
+            }
         }
         return $this;
     }
